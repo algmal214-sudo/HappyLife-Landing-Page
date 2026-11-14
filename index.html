@@ -8,10 +8,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style/* إخفاء شارة نتليفاي نهائياً */
+<style>
+/* إخفاء شارة نتليفاي نهائياً */
 #netlify-badge, iframe[src*="netlify"] {
   display: none !important;
-}>
+}
 :root{--green:#4A2E1E;--cream:#f5f1e8;--gold:#c6a46a;--ink:#5c4d3c;--muted:#68716b}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -30,7 +31,7 @@ nav a,.textlink{color:var(--ink);text-decoration:none;font-size:13px;font-weight
 nav a:hover,.textlink:hover{color:var(--green)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;border-radius:30px;padding:12px 24px;font-size:13px;font-weight:600;border:0;cursor:pointer;transition:.25s}
 .btn:hover{opacity:.92;transform:translateY(-1px)}
-.btn.gold{background:var(--gold);color:#202522}
+.btn.gold{background:var(--gold);color:#4A2E1E}
 .menu{display:none;background:none;border:0;font-size:26px;color:var(--green);cursor:pointer}
 
 /* الواجهة الرئيسية */
@@ -64,8 +65,6 @@ nav a:hover,.textlink:hover{color:var(--green)}
   transition: all 0.3s ease;
   cursor: pointer;
 }
-
-/* التأثير عند تمرير المؤشر (طفو وتعبئة باللون) */
 .btn.btn-outline:hover {
   background: #8B744C;
   color: #ffffff;
@@ -119,7 +118,7 @@ section.pad{padding:80px 0}
 
 /* الموقع */
 .location{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
-.map{min-height:270px;border-radius:24px;background:var(--cream);border:1px solid #e5dec9;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--green);padding:30px;gap:12px}
+.map{min-height:280px;border-radius:24px;background:var(--cream);border:1px solid #e5dec9;overflow:hidden;padding:0;}
 
 /* الأسئلة الشائعة */
 .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px}
@@ -160,6 +159,87 @@ section.pad{padding:80px 0}
   .cards,.booking-form{grid-template-columns:1fr}
   .brand-logo{height:44px}
 }
+
+/* تنسيق معرض الصور المتحرك أفقياً مع الأزرار الزجاجية وإخفاء شريط التمرير */
+.extra-gallery-wrap {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px dashed #e5dec9;
+}
+.gallery-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid #e5dec9;
+  color: var(--green);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(95, 73, 24, 0);
+  backdrop-filter: blur(8px);
+  font-size: 18px;
+  font-weight: bold;
+  transition: all 0.25s ease;
+}
+.slider-btn:hover {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+  transform: translateY(-50%) scale(1.05);
+}
+/* عكس مواقع الأزرار وتوجيه الأسهم بالشكل الصحيح */
+.prev-btn { right: -22px; }
+.next-btn { left: -22px; }
+
+@media(max-width: 850px) {
+  .slider-btn { display: none; }
+}
+
+.horizontal-gallery {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  scroll-snap-type: x mandatory;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+/* إخفاء شريط التمرير نهائياً مع الحفاظ على خاصية التمرير والسحب */
+.horizontal-gallery::-webkit-scrollbar {
+  display: none;
+}
+.horizontal-gallery {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.horizontal-gallery .scroll-item {
+  min-width: 240px;
+  height: 160px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+.horizontal-gallery .scroll-item:hover {
+  transform: translateY(-4px);
+}
 </style>
 </head>
 <body>
@@ -168,7 +248,7 @@ section.pad{padding:80px 0}
   <div class="container nav">
     <a class="brand" href="#home">
       <img class="brand-logo" src="images/logo.png" alt="شعار هابي لايف">
-      <span><b>HAPPY LIFE</b><small>للشقق المفروشة</small></span>
+      <span><b>H A P P Y L I F E</b><small style="color: #8B744C;">هـابي لايـف لـلشقـق المفـروشـة </small></span>
     </a>
     <button class="menu" id="menu" aria-label="القائمة">☰</button>
     <nav id="nav">
@@ -179,7 +259,7 @@ section.pad{padding:80px 0}
       <a href="#booking">احجز الآن</a>
       <a href="#location">الموقع</a>
     </nav>
-    <a class="btn" href="#booking">احجز إقامتك</a>
+    <a class="btn" href="#booking"> احجز إقامتك الآن</a>
   </div>
 </header>
 
@@ -187,11 +267,10 @@ section.pad{padding:80px 0}
   <section class="hero" id="home">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow">هابي لايف للشقق المفروشة · تريم</span>
+        <span class="eyebrow">هابي لايف للشقق المفروشة - تريم</span>
         <h1>راحتك تبدأ <em>من هنا</em></h1>
-        <p>إقامة تجمع الراحة والخصوصية والأناقة، في مساحات مفروشة بعناية لتستمتع بإقامتك في قلب تريم.</p>
+        <p>إقامة تجمع الراحة والخصوصية والأناقة، في مساحات مفروشة بعناية لتستمتع بإقامتك في قلب تريم</p>
         
-        <!-- الأزرار المعدلة بنفس النمط الشفاف وبالمقاسات المطلوبة -->
         <div class="actions">
           <a class="btn btn-outline" href="#booking">احجز أو استفسر الآن ←</a>
           <a class="btn btn-outline" href="#gallery">شاهد الشقق ↓</a>
@@ -204,7 +283,7 @@ section.pad{padding:80px 0}
         </div>
       </div>
       <div class="photo">
-        <span class="tag">مرحباً بك</span>
+        <span class="tag">هابي لايف للشقق المفروشة</span>
       </div>
     </div>
   </section>
@@ -213,7 +292,7 @@ section.pad{padding:80px 0}
     <div class="container intro">
       <div class="kicker">أهلاً بك في هابي لايف</div>
       <div>
-        <h2>أكثر من مجرد مكان للإقامة…<br>مساحة تشبه راحتك.</h2>
+        <h2>أكثر من مجرد مكان للإقامة...<br><span style="color: #b28d53;">مساحة تشبه راحتك</span></h2>
         <p>في هابي لايف للشقق المفروشة بتريم، نهتم بأدق التفاصيل التي تجعل إقامتك هادئة ومريحة. سواء كانت زيارتك للعمل، السياحة، أو زيارة الأهل، نوفر لك شققاً مفروشة تجمع بين اللمسات العصرية والخصوصية التامة.</p>
       </div>
     </div>
@@ -223,36 +302,74 @@ section.pad{padding:80px 0}
     <div class="container">
       <div class="heading">
         <div>
-          <span class="kicker">تفاصيل تصنع الفرق</span>
-          <h2>كل ما تحتاجه لراحة إقامتك</h2>
+          <span class="kicker">نتمـيز بخدمـاتنـا</span>
+          <h2>هابي لايف... راحتكم في كل تفصيلة</h2>
         </div>
-        <p>تجهيزات متكاملة صُممت لتمنحك تجربة سكنية راقية ومريحة.</p>
+        <p>نقدم لكم باقة من الخدمات والمرافق المصممة لتجعل إقامتكم أكثر راحة ورفاهية</p>
       </div>
       <div class="cards">
         <article class="card">
-          <span class="num">01</span>
-          <div class="ico">🛏️</div>
-          <h3>غرف نوم مريحة</h3>
-          <p>مفروشات نظيفة ومراتب مريحة تساعدك على الاسترخاء التام.</p>
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/room.svg" alt="غرف مريحة" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>غرف مريحة</h3>
+          <p>غرف مصممة بعناية، تجمع بين الأناقة والنظافة وراحة الأسرّة، لتمنحكم إقامة هادئة ومريحة</p>
         </article>
+
         <article class="card">
-          <span class="num">02</span>
-          <div class="ico">🛋️</div>
-          <h3>مجلس عربي أنيق</h3>
-          <p>أجواء دافئة ومساحة واسعة مناسبة للجلوس واستقبال الضيوف.</p>
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/lounge.svg" alt="ديوان ضيافة" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>ديوان ضيافة</h3>
+          <p>أجواء ممتعة ومساحة أنيقة للقاءات والضيافة والاجتماعات متاحة للحجز للأفراد والشباب والمؤسسات.</p>
         </article>
+
         <article class="card">
-          <span class="num">03</span>
-          <div class="ico">🛁</div>
-          <h3>حمام عصري وجاكوزي</h3>
-          <p>تشطيبات حديثة ونظافة فائقة تضيف لمسة من الاستجمام.</p>
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/jacuzzi.svg" alt="حمام بخار وجاكوزي" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>حمام بخار وجاكوزي</h3>
+          <p>استمتعوا بلحظات من الاسترخاء وتجديد النشاط واضافة لمسة من الاستجمام.</p>
         </article>
+
         <article class="card">
-          <span class="num">04</span>
-          <div class="ico">📺</div>
-          <h3>شاشات ذكية</h3>
-          <p>تجهيزات ترفيهية حديثة لتجربة إقامة متكاملة لك ولعائلتك.</p>
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/wifi.svg" alt="انترنت مجاني" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>انترنت مجاني</h3>
+          <p>تجهيزات ترفيهية حديثة وأنترنت مجاني وشاشات متصلة بالشبكة لمتعـة مشـاهدة أكـبر.</p>
         </article>
+
+        <article class="card">
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/market.svg" alt="بقالة وكفتيريا" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>بقالة وكفتيريا</h3>
+          <p>احتياجاتكم اليومية ومأكولاتكم الخفيفة بالقرب منكم.</p>
+        </article>
+
+        <article class="card">
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/parking.svg" alt="موقف سيارات خاص" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>موقف سيارات خاص</h3>
+          <p>موقف آمن لسيارتكم برسوم رمزية.</p>
+        </article>
+
+        <article class="card">
+          <span class="num"></span>
+          <div class="ico">
+            <img src="images/delivery.svg" alt="خدمة التوصيل" style="width: 32px; height: 32px;" />
+          </div>
+          <h3>خدمة التوصيل</h3>
+          <p>نوصّل إليكم ما تحتاجونه بكل سهولة.</p>
+        </article> 
       </div>
     </div>
   </section>
@@ -264,21 +381,45 @@ section.pad{padding:80px 0}
           <span class="kicker">جولة مصورة (اضغط للتكبير)</span>
           <h2>مساحات صُممت لتُشعرك بالراحة</h2>
         </div>
-        <p>لقطات واقعية من داخل شقق هابي لايف المفروشة.</p>
+        <p>.</p>
       </div>
       <div class="gallery-grid">
-        <div class="photo large bedroom-photo" onclick="openLightbox('images/bedroom.jpg')">
-          <span class="tag">01 · غرفة النوم</span>
-        </div>
+        <div class="photo large bedroom-photo" onclick="openLightbox('images/bedroom.jpg')"></div>
         <div class="gallery-side">
-          <div class="photo majlis-photo" onclick="openLightbox('images/majlis.jpg')">
-            <span class="tag">02 · المجلس العربي</span>
-          </div>
-          <div class="photo bathroom-photo" onclick="openLightbox('images/bathroom.jpg')">
-            <span class="tag">03 · الحمام والجاكوزي</span>
-          </div>
+          <div class="photo majlis-photo" onclick="openLightbox('images/majlis.jpg')"></div>
+          <div class="photo bathroom-photo" onclick="openLightbox('images/bathroom.jpg')"></div>
         </div>
       </div>
+
+      <!-- معرض إضافي قابل للتمرير مع أزرار زجاجية منعكسة -->
+      <div class="extra-gallery-wrap">
+        <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <h3 style="font-size: 18px; color: var(--green); margin: 0;">زوايا إضافية من الشقق</h3>
+          <span style="font-size: 12px; color: var(--muted);">استخدم الأسهم أو اسحب للمزيد ←</span>
+        </div>
+        
+        <div class="gallery-slider-wrapper">
+          <!-- زر التنقل الأيسر (السابق) -->
+          <button class="slider-btn prev-btn" onclick="scrollGallery(-1)" aria-label="السابق">❮</button>
+          
+          <!-- شريط الصور الأفقي بدون شريط تمرير ظاهر -->
+          <div class="horizontal-gallery" id="extraGallery">
+            <div class="scroll-item" style="background-image: url('images/room-extra1.jpg')" onclick="openLightbox('images/room-extra1.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/majlis-extra1.jpg')" onclick="openLightbox('images/majlis-extra1.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/bath-extra1.jpg')" onclick="openLightbox('images/bath-extra1.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/room-extra2.jpg')" onclick="openLightbox('images/room-extra2.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/room-extra3.jpg')" onclick="openLightbox('images/room-extra3.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/room-extra4.jpg')" onclick="openLightbox('images/room-extra4.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/room-extra5.jpg')" onclick="openLightbox('images/room-extra5.jpg')"></div>    
+            <div class="scroll-item" style="background-image: url('images/room-extra6.jpg')" onclick="openLightbox('images/room-extra6.jpg')"></div>
+            <div class="scroll-item" style="background-image: url('images/lounge-extra1.jpg')" onclick="openLightbox('images/lounge-extra1.jpg')"></div>
+          </div>
+          
+          <!-- زر التنقل الأيمن (التالي) -->
+          <button class="slider-btn next-btn" onclick="scrollGallery(1)" aria-label="التالي">❯</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -330,22 +471,28 @@ section.pad{padding:80px 0}
     </div>
   </section>
 
+  <!-- قسم الموقع مع الخريطة التفاعلية -->
   <section class="pad" id="location">
     <div class="container location">
       <div>
         <span class="kicker">نستقبلك في</span>
-        <h2><h1>تريم - حضرموت</h1>
-<p style="font-size: 1.1rem; color: #8B744C; margin-top: -10px;">
-  الخط الدائري - بجانب مستوصف الغناء
-</p></h2>
+        <h2>حضرموت - تريم</h2>
+        <p style="font-size: 1.1rem; color: #b28d53; margin-top: -10px;">
+          الخط الدائري - بجانب مستوصف الغناء
+        </p>
         <p>موقع مميز يسهل الوصول إليه وقريب من الخدمات الحيوية في مدينة تريم. تواصل معنا لإرسال الموقع الدقيق (GPS) مباشرة إلى هاتفك.</p>
         <a class="textlink wa-direct" href="#">اطلب إحداثيات الموقع عبر واتساب ←</a>
       </div>
       <div class="map">
-        <div style="font-size:32px">📍</div>
-        <b>تريم · حضرموت · اليمن</b>
-        <span style="font-size:12px;color:var(--muted)">سهولة الوصول ومواقف متاحة للنزلاء</span>
-        <a class="btn wa-direct" href="#" style="margin-top:8px">استلم الموقع على واتساب</a>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d239.34190069745057!2d49.00902756509098!3d16.051457688809283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3de6b850365f015d%3A0x253cfbe6b61841f3!2zMzIyNStKRznYjCDYqtix2YrZhdiMINin2YTZitmO2YXZjtmG!5e1!3m2!1sar!2s!4v1794596695652!5m2!1sar!2s" 
+          width="100%" 
+          height="100%" 
+          style="border:0; min-height: 280px; display: block;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="strict-origin-when-cross-origin">
+        </iframe>
       </div>
     </div>
   </section>
@@ -355,7 +502,7 @@ section.pad{padding:80px 0}
       <div>
         <span class="kicker">هل لديك استفسار؟</span>
         <h2>إجابات سريعة قبل حجز إقامتك.</h2>
-        <p>نحن هنا لخدمتك على مدار الساعة.</p>
+        <p style="font-size: 1.0rem; color: #b28d53; margin-top: -4px;">نحن هنا لخدمتك على مدار الساعة</p>
       </div>
       <div class="faq-list">
         <details open>
@@ -437,21 +584,28 @@ document.getElementById("bookingForm").addEventListener("submit", e => {
   const guests = document.getElementById("guests").value;
 
   const text = `مرحباً إدارة هابي لايف للشقق المفروشة، أرغب بطلب حجز:\n` +
-               `• تاريخ الوصول: ${checkIn}\n` +
-               `• مدة الإقامة: ${duration}\n` +
-               `• نوع الوحدة: ${unitType}\n` +
-               `• عدد النزلاء: ${guests}`;
+               `تاريخ الوصول: ${checkIn}\n` +
+               `مدة الإقامة: ${duration}\n` +
+               `نوع الوحدة: ${unitType}\n` +
+               `عدد النزلاء: ${guests}`;
 
   window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
 });
 
-// عارض الصور
+// عارض الصور المكبر
 function openLightbox(src) {
   document.getElementById("lightboxImg").src = src;
   document.getElementById("lightbox").classList.add("active");
 }
 function closeLightbox() {
   document.getElementById("lightbox").classList.remove("active");
+}
+
+// دالة تحريك المعرض الأفقي عبر الأزرار الزجاجية
+function scrollGallery(direction) {
+  const gallery = document.getElementById('extraGallery');
+  const scrollAmount = 300; // مسافة التمرير عند النقر
+  gallery.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 </script>
 </body>
