@@ -247,6 +247,48 @@ section.pad{padding:80px 0}
 .horizontal-gallery .scroll-item:hover {
   transform: translateY(-4px);
 }
+/* تنسيق قسم عن هابي لايف بالشبكة الأصلية */
+.intro {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 50px;
+  align-items: start;
+}
+.nearby-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.nearby-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f3efe8;
+  color: var(--green);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1.5px solid #e5dec9;
+  transition: transform 0.25s ease;
+}
+.nearby-badge:hover {
+  transform: translateY(-2px);
+  border-color: #b28d53;
+}
+.nearby-badge svg {
+  width: 17px;
+  height: 17px;
+  color: #b28d53;
+  flex-shrink: 0;
+}
+@media(max-width: 850px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
 </style>
 </head>
 <body>
@@ -296,14 +338,34 @@ section.pad{padding:80px 0}
   </section>
 
   <section class="pad" id="about">
-    <div class="container intro">
-      <div class="kicker">أهلاً بك في هابي لايف</div>
-      <div>
-        <h2>أكثر من مجرد مكان للإقامة...<br><span style="color: #b28d53;">مساحة تشبه راحتك</span></h2>
-        <p>في هابي لايف للشقق المفروشة بتريم، نهتم بأدق التفاصيل التي تجعل إقامتك هادئة ومريحة. سواء كانت زيارتك للعمل، السياحة، أو زيارة الأهل، نوفر لك شققاً مفروشة تجمع بين اللمسات العصرية والخصوصية التامة.</p>
+  <div class="container intro">
+    <div class="kicker">أهلاً بك في هابي لايف</div>
+    <div>
+      <h2>أكثر من مجرد مكان للإقامة...<br><span style="color: #b28d53;">مساحة تشبه راحتك</span></h2>
+      <p>لأن راحتك هي أولويتنا في هابي لايف للشقق المفروشة بتريم، نصنع لك تجربة إقامة استثنائية تجمع بين فخامة التصميم العصري والخصوصية التامة. سواء كانت زيارتك للسياحة، العمل، أو للنقاهة والعلاج؛ نضعك في قلب الخدمات الحيوية بجوار مستوصف الغناء ومطعم نجد، لتنعم براحة بال تامة وتفاصيل فندقية تليق بك.</p>
+      
+      <!-- شارات المعالم القريبة -->
+      <div class="nearby-badges">
+        <span class="nearby-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          بالقرب من مستوصف الغناء
+        </span>
+
+        <span class="nearby-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+            <path d="M7 2v20"/>
+            <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+          </svg>
+          بالقرب من مطعم نجد
+        </span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="pad features" id="features">
     <div class="container">
@@ -374,8 +436,8 @@ section.pad{padding:80px 0}
           <div class="ico">
             <img src="images/delivery.svg" alt="خدمة التوصيل" style="width: 32px; height: 32px;" />
           </div>
-          <h3>خدمة التوصيل</h3>
-          <p>نوصّل إليكم ما تحتاجونه بكل سهولة.</p>
+          <h3>غــرف VIP</h3>
+          <p> مساحات راقية تجمع بين رفاهية التصميم وراحة الإقامة وخصوصية تليق بكم.</p>
         </article> 
       </div>
     </div>
@@ -456,10 +518,10 @@ section.pad{padding:80px 0}
           <label>نوع الإقامة</label>
           <select id="unitType">
             <option value="شقة عائلية متكاملة">شقة عائلية متكاملة</option>
-            <option value="جناح بغرفة ومجلس">جناح بغرفة ومجلس</option>
+            <option value="جناح بغرفة ومجلس">جنـــاح </option>
             <option value="غرفــة VIP">غرفــة VIP</option>
             <option value="ديـــوان">ديـــوان</option>
-            <option value="حمام بخاري(جاكوزي)">حمام بخاري(جاكوزي)</option>
+            <option value="حمام بخاري(جاكوزي)">حمام بخاري جاكوزي (مع غرفة VIP أو شقة)</option>
           </select>
         </div>
         <div class="form-group">
@@ -468,7 +530,7 @@ section.pad{padding:80px 0}
             <option value="شخص واحد">شخص واحد</option>
             <option value="شخصان">شخصان</option>
             <option value="عائلة (3 - 5 أشخاص)">عائلة (3 - 5 أشخاص)</option>
-            <option value="أكثر من 5 أشخاص">أكثر من 5 أشخاص</option>
+            <option value="أكثر من 5 أشخاص">أكثر من 5 أشخاص(الديوان)</option>
           </select>
         </div>
         <div class="form-group full">
