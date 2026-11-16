@@ -474,6 +474,26 @@ section.pad{padding:80px 0}
   }
     }
   }
+  /* تنسيق وضبط صندوق الححز الأبيض داخل الإطار البني على الجوال */
+  @media (max-width: 768px) {
+    /* ضبط حاوية النموذج الأبيض لتبقى داخل الصندوق البني تماماً وبدون خروج */
+    .booking-form, .contact-form, form {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 5px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ضبط الحقول الداخلية والأسطر لتتطابق مع مقاس الصندوق */
+    .booking-form input, .booking-form select, .booking-form button,
+    .contact-form input, .contact-form select, .contact-form button,
+    form input, form select, form button {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
 </style>
 </head>
 <body>
