@@ -448,6 +448,30 @@ section.pad{padding:80px 0}
       padding: 0 !important;
     }
   }
+  /* الحل الجذري والصارم لإطار الحجز والنصوص الطويلة على الجوال */
+  @media (max-width: 768px) {
+    /* إجبار الصندوق البني على احتواء كل ما بداخله ومنع أي تجاوز */
+    .booking-panel, .contact-panel, div[class*="contact"], div[class*="booking"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    /* إجبار العنوان على الالتفاف التام والنزول للسطر التالي بداخل الإطار */
+    .booking-panel h2, .contact-panel h2, #contact h2, div[class*="contact"] h2 {
+      font-size: 19px !important;
+      line-height: 1.5 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      display: block !important;
+      white-space: normal !important;
+      word-break: break-word !important;
+      overflow-wrap: break-word !important;
+    }
+  }
     }
   }
 </style>
