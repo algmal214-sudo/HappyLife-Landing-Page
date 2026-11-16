@@ -336,6 +336,24 @@ section.pad{padding:80px 0}
       line-height: 1.4;
     }
   }
+  /* إصلاح حقول الحجز ومحاذاة النص على الجوال */
+  .booking-form select, 
+  .booking-form input, 
+  .contact-form select, 
+  .contact-form input,
+  form select, form input {
+    direction: rtl;
+    text-align: right;
+    text-align-last: right;
+    padding-left: 35px;
+    box-sizing: border-box;
+  }
+
+  #about p {
+    text-align: justify;
+    text-justify: inter-word;
+    text-align-last: right;
+  }
 </style>
 </head>
 <body>
