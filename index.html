@@ -360,6 +360,25 @@ section.pad{padding:80px 0}
     text-justify: inter-word;
     text-align-last: right;
   }
+  /* إصلاح خروج النص عن الإطار وتجاوب زر الواتساب على الجوال */
+  @media (max-width: 600px) {
+    /* تصغير عنوان الحجز قليلاً ليناسب عرض الشاشة البني دون خروج */
+    #contact h2, .contact-panel h2, .booking-panel h2 {
+      font-size: 20px !important;
+      line-height: 1.6 !important;
+      word-spacing: -1px;
+    }
+    /* زيادة مساحة الحشو داخل الإطار البني للحجز */
+    #contact, .contact-panel, .booking-panel {
+      padding: 20px 15px !important;
+      overflow: hidden !important;
+    }
+    /* رفع أيقونة الواتساب العائمة للأعلى قليلاً لكي لا يتم قصها */
+    .whatsapp, .whatsapp-float, a[href*="whatsapp"] {
+      bottom: 25px !important;
+      left: 18px !important;
+    }
+  }
 </style>
 </head>
 <body>
