@@ -421,16 +421,33 @@ section.pad{padding:80px 0}
       overflow: hidden !important;
     }
 
-    /* تصغير حجم خط العنوان وإجبار النص على الالتفاف للسطر التالي بداخل الإطار */
-    #contact h2, .contact h2, #booking h2, .booking h2, 
-    .contact-panel h2, .booking-panel h2 {
-      font-size: 20px !important;
-      line-height: 1.4 !important;
+  /* الحل الجذري والقاطع لمشكلة خروج النص من الإطار البني على الجوال */
+  @media (max-width: 768px) {
+    /* ضبط الحاوية البنية لتأخذ مقاساً آمناً وتتوسط الشاشة تماماً */
+    .booking-panel, .contact-panel, div[style*="background"] {
+      width: 92% !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+      position: relative !important;
+    }
+
+    /* إجبار العنوان والنصوص بداخلها على الالتفاف وعدم تجاوز العرض */
+    .booking-panel h2, .contact-panel h2, 
+    .booking-panel p, .contact-panel p,
+    #contact h2, #booking h2 {
+      font-size: 19px !important;
+      line-height: 1.5 !important;
+      width: 100% !important;
       max-width: 100% !important;
-      word-wrap: break-word !important;
+      display: block !important;
+      word-break: break-word !important;
       overflow-wrap: break-word !important;
       white-space: normal !important;
-      display: block !important;
+      padding: 0 !important;
+    }
+  }
     }
   }
 </style>
