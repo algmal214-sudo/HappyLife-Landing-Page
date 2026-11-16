@@ -379,6 +379,36 @@ section.pad{padding:80px 0}
       left: 18px !important;
     }
   }
+  /* حل جذري شامل لمشكلة التمرير الأفقي وتوسيط الصفحة وإطار الحجز */
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    /* توسيط وضبط مقاسات الإطار البني للحجز */
+    .booking-panel, .contact-panel {
+      width: 92% !important;
+      margin: 0 auto !important;
+      padding: 20px 15px !important;
+      overflow: hidden !important;
+    }
+
+    /* جعل العنوان يتلف بمرونة داخل الإطار دون خروج */
+    .booking-panel h2, .contact-panel h2 {
+      font-size: 21px !important;
+      line-height: 1.5 !important;
+      word-break: break-word !important;
+      white-space: normal !important;
+      padding: 0 5px !important;
+    }
+  }
 </style>
 </head>
 <body>
