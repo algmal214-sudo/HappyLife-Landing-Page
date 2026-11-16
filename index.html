@@ -494,6 +494,46 @@ section.pad{padding:80px 0}
       box-sizing: border-box !important;
     }
   }
+  /* حل نهائي وقاطع لمشكلة الصندوق الأبيض والإطار البني على الجوال */
+  @media (max-width: 768px) {
+    /* القسم الرئيسي الحاضن للحجز */
+    #contact, #booking, .contact, .booking {
+      padding: 10px 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    /* الإطار البني الرئيسي وتوسيطه */
+    .booking-panel, .contact-panel {
+      width: 95% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      border-radius: 24px !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    /* الصندوق الأبيض أو النموذج (Form) بداخل الإطار البني */
+    .booking-form, .contact-form, form, 
+    .booking-panel > div:not(.booking-header), .contact-panel > div {
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* جميع الحقول، القوائم، والأزرار بداخل النموذج لتتطابق تماماً */
+    .booking-form input, .booking-form select, .booking-form button,
+    .contact-form input, .contact-form select, .contact-form button,
+    form input, form select, form button {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+    }
+  }
 </style>
 </head>
 <body>
