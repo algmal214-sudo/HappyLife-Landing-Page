@@ -45,11 +45,21 @@
 </script>
 
 ><title>هابي لايف للشقق المفروشة | تريم - حضرموت</title>
-<!-- أيقونة الموقع (Favicon) -->
-<link rel="shortcut icon" type="image/png" href="images/favicon.png?v=5">
-<link rel="icon" type="image/png" href="images/favicon.png?v=5">
-<link rel="apple-touch-icon" href="images/favicon.png?v=5">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" type="image/png" href="https://happy-life-tarim1.netlify.app/images/favicon.png?v=20">
+<link rel="shortcut icon" href="https://happy-life-tarim1.netlify.app/favicon.ico?v=20">
+<link rel="apple-touch-icon" href="https://happy-life-tarim1.netlify.app/images/favicon.png?v=20">
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const iconUrl = 'https://happy-life-tarim1.netlify.app/images/favicon.png?v=' + new Date().getTime();
+    document.querySelectorAll("link[rel*='icon']").forEach(el => el.remove());
+    const link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/png';
+    link.href = iconUrl;
+    document.head.appendChild(link);
+  });
+</script>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -62,10 +72,6 @@
 #netlify-badge, iframe[src*="netlify"] {
   display: none !important;
 }
-<!-- إجبار المتصفح على قراءة الأيقونة الجديدة من الجذر -->
-<link rel="icon" type="image/png" href="./logo-icon.png?v=10">
-<link rel="shortcut icon" type="image/png" href="./logo-icon.png?v=10">
-<link rel="apple-touch-icon" href="./logo-icon.png?v=10">
 
 :root{--green:#4A2E1E;--cream:#f5f1e8;--gold:#c6a46a;--ink:#5c4d3c;--muted:#68716b}
 *{box-sizing:border-box}
